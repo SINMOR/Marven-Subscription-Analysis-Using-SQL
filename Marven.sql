@@ -255,8 +255,8 @@ FROM ChurnRate
   FROM marvensubscription
   GROUP BY subscription_cost
 
+--Calculate Customer Retention Rate Over Time
 
----Calculate Customer Retention Rate Over Time
 WITH RetentionRate AS (
   SELECT
     MONTH(created_dateconv) AS Month,
