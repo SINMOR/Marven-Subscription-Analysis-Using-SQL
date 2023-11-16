@@ -105,7 +105,7 @@ FROM marvensubscription
 WHERE TRY_CAST(canceled_date AS DATETIME) IS NULL AND canceled_date IS NOT NULL
 
 --|DATA ANALYSIS|
---1. what is the total number of subscriber 
+--1. what is the total number of subscribers 
 SELECT COUNT(DISTINCT customer_id)
 FROM marvensubscription
 --2877 subsribers
@@ -149,7 +149,7 @@ SELECT
 FROM marvensubscription
 --95.65%
 
---calculate the monthly revenue for a year 
+--8.calculate the monthly revenue for a year 
 WITH MonthlyRevenue AS (
   SELECT
     MONTH(created_dateconv) AS Month,
@@ -199,7 +199,7 @@ FROM marvensubscription
 GROUP BY customer_id
 HAVING COUNT(DISTINCT created_date) > 1
 
---Find the Customers Lifetime Value (CLV)
+--10.Find the Customers Lifetime Value (CLV)
 WITH CustomerRevenue AS (
   SELECT customer_id, SUM(subscription_cost) AS TotalRevenue
   FROM marvensubscription
@@ -212,21 +212,21 @@ SELECT
 FROM CustomerRevenue
 GROUP BY customer_id,TotalRevenue
 
---Find Customers with Unpaid Subscriptions
+--11.Find Customers with Unpaid Subscriptions
 SELECT customer_id, created_dateconv
 FROM marvensubscription
 WHERE was_subscription_paid = 'No'
 GROUP BY customer_id,created_dateconv
---find the number of unpaid subscription 
+--12.find the number of unpaid subscription 
 SELECT COUNT(*) AS TotalUnpaidSubscriptions
 FROM marvensubscription
 WHERE was_subscription_paid = 'No'
---find the number of paid subscription 
+--13.find the number of paid subscription 
 SELECT COUNT(*) AS TotalpaidSubscriptions
 FROM marvensubscription
 WHERE was_subscription_paid = 'Yes'
 
----Calculate Churn Rate for Each Subscription Interval
+--14.Calculate Churn Rate for Each Subscription Interval
 WITH ChurnRate AS (
   SELECT
     subscription_interval,
@@ -241,7 +241,7 @@ SELECT
 FROM ChurnRate
 --65.23%
 
----Identify Seasonal Subscription Patterns
+--15.Identify Seasonal Subscription Patterns
 
   SELECT
     MONTH(created_dateconv)  AS Month,
@@ -250,12 +250,12 @@ FROM ChurnRate
   GROUP BY MONTH(created_dateconv)
 
 
----Determine the Impact of Subscription Cost on Churn
+--16.Determine the Impact of Subscription Cost on Churn
   SELECT subscription_cost, COUNT(CASE WHEN canceled_date IS NOT NULL THEN 1 END) AS Churned, COUNT(*) AS TotalSubscriptions
   FROM marvensubscription
-  GROUP BY subscription_cost
+  GROUP BY subscription_cost;
 
---Calculate Customer Retention Rate Over Time
+--17.Calculate Customer Retention Rate Over Time
 
 WITH RetentionRate AS (
   SELECT
