@@ -5,7 +5,7 @@
 ![](Marvenimage.png)
 
 # Introduction
-Marven Analytics is an Online Bootcamp that teaches Data analysis .Its widely known and its one of the best bootcamp for a newbie .They have a Data playground where ypu can download datasets and play around with them .The have a free version, Monthly and yearly subscriptions.They offer both free and premium courses on Power Bi ,Excel ,SQL and other data analysis topics  .I would highly recommend Marven analytics for a beginner 
+Marven Analytics is an Online boot camp that teaches Data analysis. It's widely known and it's one of the best bootcamp for a newbie. They have a Data playground where you can download datasets and play around with them. They have a free version and monthly and yearly subscriptions. They offer both free and premium courses on Power Bi, Excel, SQL and other data analysis topics. I would highly recommend Marven Analytics for a beginner 
 
 # Problem Statement
 - What is the Churn rate i.e The rate at which customers stop paying for subscriptions
@@ -14,7 +14,7 @@ Marven Analytics is an Online Bootcamp that teaches Data analysis .Its widely kn
 - Identify The customer Retention Rate 
 
 # Data Source 
-The Dataset is called Subscription Cohort analysis .It entails six columns 
+The Dataset is called Subscription Cohort analysis. It entails six columns 
 1. customer_id
 2. created_date
 3. canceled_date
@@ -22,10 +22,10 @@ The Dataset is called Subscription Cohort analysis .It entails six columns
 5. subscription_interval
 6. was_subscription_paid
 
-The Dataset was downloaded from [MarvenAnalytics website](https://mavenanalytics.io/data-playground) .It was a clean dataset with less null values hence it was easy to work around .
+The Dataset was downloaded from [MarvenAnalytics website](https://mavenanalytics.io/data-playground). It was a clean dataset with fewer null values hence it was easy to work around.
 
-# Skills Demontstrated 
-1. Data Normalization including the use of INSERT,UPDATE and DELETE 
+# Skills Demonstrated 
+1. Data Normalization including the use of INSERT, UPDATE and DELETE 
 2. Pivoting Data using CASE and WHEN 
 3. Use of CTEs 
 4. Date/Time Manipulation 
@@ -35,52 +35,64 @@ The Dataset was downloaded from [MarvenAnalytics website](https://mavenanalytics
 # Data Cleaning 
 1. <u>Changing Date/Time format </u>
 
-The Date was in the wrong format so i used the CONVERT function to change it to date format YYYY-MM-DD and added a new column which i will be using for analysis 
+The Date was in the wrong format so I used the CONVERT function to change it to date format YYYY-MM-DD and added a new column which I will be using for analysis 
+
 ![](dateformat.png)
 
 2. <u>Checking for duplicates </u>
 
-I used PARTITION BY together with CTEs to check for the duplicates .I opted to use CTEs because we had a total of 185 duplicates with the same customer id but have difference created_date and canceled_id because a customer can have difference subscriptions in a year
+I used PARTITION BY together with CTEs to check for duplicates. I opted to use CTEs because we had a total of 185 duplicates with the same customer id but had different created_date and canceled_id columns  because a customer can have different subscriptions in a year
+
 ![](ctes.png)
-here we had  6 customers we the same customerid created_date and canceled_date hence we will delete the duplicates 
+
+here we had  6 customers we the same customer ID created_date and canceled_date hence we will delete the duplicates 
+
 ![](delete.png)
 
 3. <u>Checking for Null values </u>
 
-One of the best ways to check for duplicates is by using CASE statements this is because this is a small dataset .Only the canceled_date column had null so we will replace it NOT YET
+One of the best ways to check for duplicates is by using CASE statements this is because this is a small dataset. Only the canceled_date column had null so we will replace it NOT YET
+
 ![](null.png)
-_We will us COALESCE function  but we must convert date format to string and add a new column_ 
+
+_We will use the COALESCE function  but we must convert the date format to string and add a new column_ 
+
 ![](replace.png)
 
 # Data Analysis
-1. What is the Churn rate for each subscription interval
+1. **What is the Churn rate for each subscription interval**
 
-Churn rate is the rate at which customers dont renew subscriptions after every subscription interval 
+The churn rate is the rate at which customers don't renew subscriptions after every subscription interval 
+
 ![](churnrate.png)
-66% Perecent of the monthly subscriber do not renew there subscriptions 
 
-2. What is the Customers Retention rate over time 
+66% of the monthly subscriber does not renew their subscriptions 
+
+2. **What is the customer retention rate over time** 
 
 We expressed customer retention rate over time as a percentage 
+
 ![](retention.png)
 
-3. What is the customers Lifetime value 
+3. **What is the customer's Lifetime value** 
 
-This the Total revenue generated by the customers over the number of customers 
+This is the Total revenue generated by the customers over the number of customers 
+
 ![](clv.png)
 
-4. What is  the Impact of Subscription Cost on Churn
+4. **What is  the Impact of Subscription Cost on Churn**
 
-How does the subscription cost affect how customers renew their subscriptions 
+How does the subscription cost affect how customers renew their subscriptions? 
+
 ![](impact.png)
 
 
 # Conclusion 
 Insights from the analysis:
 1. Most customers renew monthly subscriptions because they are not regular users 
-2. The higher the subscriptiion cost the higher the churn rate 
-3. The retention rate over time is low beacuse of high subscription cost 
-4. The Churn rate is 65% meaning most customers dont renew their subscriptions 
+2. The higher the subscriptions cost the higher the churn rate 
+3. The retention rate over time is low because of high subscription cost 
+4. The Churn rate is 65% meaning most customers don't renew their subscriptions 
 5. Most customers are seasonal 
 
 Follow me on [**Twitter**](https://twitter.com/DEVSINMOR) and [**Medium**](https://medium.com/@morrisindet) for more content on the topics learnt in this project.Dont forget to check  the full code [**here**](Marven.sql) 
